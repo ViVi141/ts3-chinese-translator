@@ -1,150 +1,87 @@
 @echo off
-REM TS3 翻译插件安装脚本
-REM TS3 Translator Plugin Installer
-REM GitHub: https://github.com/ViVi141/ts3-chinese-translator
-REM Author: ViVi141 (747384120@qq.com)
+REM 安装 TeamSpeak 3 插件
+REM Install TeamSpeak 3 plugin
 chcp 65001 >nul 2>&1
 
 echo ========================================
-echo TS3 中文翻译插件安装程序
-echo TS3 Chinese Translator Plugin Installer
-echo GitHub: https://github.com/ViVi141/ts3-chinese-translator
-echo Author: ViVi141
+echo TS3 中文翻译插件 - 安装
+echo TS3 Chinese Translator - Install
 echo ========================================
 echo.
 
-REM Check if plugin DLL exists
+cd /d "%~dp0\.."
+
+REM Check if DLL exists
 if not exist "dist\ts3_translator_plugin.dll" (
-    echo [错误] 未找到插件文件 dist\ts3_translator_plugin.dll
-    echo [Error] Plugin file dist\ts3_translator_plugin.dll not found
+    echo [错误] 未找到插件文件
+    echo [Error] Plugin file not found
     echo.
-    echo 请先编译插件：
-    echo Please compile the plugin first:
-    echo   1. 打开 MSYS2 MinGW64 终端
-    echo      Open MSYS2 MinGW64 terminal
-    echo   2. 运行: scripts\build_msys2.sh
-    echo      Run: scripts\build_msys2.sh
-    echo.
-    pause
-    exit /b 1
+    echo 请先编译：make 或 scripts\build_msys2.sh
+    echo Please compile first: make or scripts\build_msys2.sh
+    goto :end
 )
 
-echo [信息] 找到插件文件
-echo [Info] Plugin file found
+REM Set TS3 plugin directory
+set "TS3_PLUGIN_DIR=%APPDATA%\TS3Client\plugins"
+
+echo [信息] 目标目录: %TS3_PLUGIN_DIR%
+echo [Info] Target directory: %TS3_PLUGIN_DIR%
 echo.
 
-REM Get TeamSpeak 3 plugins directory
-set "PLUGIN_DIR=%APPDATA%\TS3Client\plugins"
-
-REM Check if directory exists
-if not exist "%PLUGIN_DIR%" (
+REM Check if TS3 plugin directory exists
+if not exist "%TS3_PLUGIN_DIR%" (
     echo [警告] TeamSpeak 3 插件目录不存在
-    echo [Warning] TeamSpeak 3 plugins directory does not exist
+    echo [Warning] TeamSpeak 3 plugin directory does not exist
     echo.
-    echo 尝试创建目录: %PLUGIN_DIR%
-    echo Attempting to create directory: %PLUGIN_DIR%
-    mkdir "%PLUGIN_DIR%" 2>nul
+    echo 创建目录? / Create directory?
+    choice /C YN /M "Y=Yes, N=No"
+    if errorlevel 2 goto :end
+    mkdir "%TS3_PLUGIN_DIR%"
     if errorlevel 1 (
-        echo [错误] 无法创建插件目录
-        echo [Error] Cannot create plugins directory
-        pause
-        exit /b 1
+        echo [错误] 无法创建目录
+        echo [Error] Failed to create directory
+        goto :end
     )
-    echo [成功] 目录创建成功
-    echo [Success] Directory created successfully
-    echo.
 )
 
-echo [信息] 插件目录: %PLUGIN_DIR%
-echo [Info] Plugin directory: %PLUGIN_DIR%
-echo.
-
-REM Check if plugin is already installed
-set "INSTALLED=0"
-if exist "%PLUGIN_DIR%\ts3_translator_plugin.dll" (
-    set "INSTALLED=1"
-    echo [信息] 检测到已安装的插件
-    echo [Info] Existing plugin installation detected
-    echo.
-    echo 选项：
-    echo Options:
-    echo   1. 覆盖安装 (Overwrite)
-    echo   2. 备份后安装 (Backup and install)
-    echo   3. 取消 (Cancel)
-    echo.
-    set /p CHOICE="请选择 (1-3) / Please choose (1-3): "
-    
-    if "%CHOICE%"=="1" (
-        echo [信息] 覆盖安装...
-        echo [Info] Overwriting...
-    ) else if "%CHOICE%"=="2" (
-        set "BACKUP_FILE=%PLUGIN_DIR%\ts3_translator_plugin.dll.backup.%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%"
-        set "BACKUP_FILE=%BACKUP_FILE: =0%"
-        copy "%PLUGIN_DIR%\ts3_translator_plugin.dll" "%BACKUP_FILE%" >nul 2>&1
-        if errorlevel 1 (
-            echo [警告] 备份失败，继续安装...
-            echo [Warning] Backup failed, continuing installation...
-        ) else (
-            echo [成功] 已备份到: %BACKUP_FILE%
-            echo [Success] Backed up to: %BACKUP_FILE%
-        )
-    ) else (
-        echo [信息] 安装已取消
-        echo [Info] Installation cancelled
-        pause
-        exit /b 0
-    )
-    echo.
+REM Backup existing plugin if exists
+if exist "%TS3_PLUGIN_DIR%\ts3_translator_plugin.dll" (
+    echo [信息] 发现已存在的插件，正在备份...
+    echo [Info] Found existing plugin, backing up...
+    copy "%TS3_PLUGIN_DIR%\ts3_translator_plugin.dll" "%TS3_PLUGIN_DIR%\ts3_translator_plugin.dll.backup" >nul 2>&1
 )
 
-REM Copy plugin file
-echo [信息] 正在复制插件文件...
-echo [Info] Copying plugin file...
-copy "dist\ts3_translator_plugin.dll" "%PLUGIN_DIR%\" >nul 2>&1
+REM Copy DLL to TS3 plugins directory
+echo [信息] 正在安装插件...
+echo [Info] Installing plugin...
+copy "dist\ts3_translator_plugin.dll" "%TS3_PLUGIN_DIR%\" >nul
 if errorlevel 1 (
-    echo [错误] 复制失败！请检查权限。
-    echo [Error] Copy failed! Please check permissions.
+    echo [错误] 安装失败
+    echo [Error] Installation failed
     echo.
-    echo 提示：尝试以管理员身份运行此脚本
-    echo Tip: Try running this script as administrator
-    pause
-    exit /b 1
+    echo 可能原因: / Possible reasons:
+    echo - TeamSpeak 3 正在运行（请先关闭）
+    echo   TeamSpeak 3 is running (please close it)
+    echo - 权限不足（以管理员身份运行）
+    echo   Insufficient permissions (run as administrator)
+    goto :end
 )
 
 echo [成功] 插件安装成功！
 echo [Success] Plugin installed successfully!
 echo.
-
-REM Verify installation
-if exist "%PLUGIN_DIR%\ts3_translator_plugin.dll" (
-    echo [验证] 插件文件已存在于插件目录
-    echo [Verify] Plugin file exists in plugins directory
-    echo.
-) else (
-    echo [警告] 验证失败，但文件可能已复制
-    echo [Warning] Verification failed, but file may have been copied
-    echo.
-)
-
+echo 文件信息: / File info:
+dir "%TS3_PLUGIN_DIR%\ts3_translator_plugin.dll"
+echo.
 echo ========================================
-echo 安装完成！
-echo Installation completed!
+echo 下一步 / Next Steps
 echo ========================================
 echo.
-echo 下一步：
-echo Next steps:
-echo   1. 启动 TeamSpeak 3 客户端
-echo      Start TeamSpeak 3 client
-echo   2. 打开设置: 工具 -^> 选项 -^> 插件
-echo      Open Settings: Tools -^> Options -^> Plugins
-echo   3. 启用 "TS3 中文翻译插件"
-echo      Enable "TS3 Chinese Translator Plugin"
-echo   4. 重启 TeamSpeak 3（如果需要）
-echo      Restart TeamSpeak 3 (if needed)
+echo 1. 启动 TeamSpeak 3 / Start TeamSpeak 3
+echo 2. 打开 设置 ^> 插件 / Open Settings ^> Plugins
+echo 3. 勾选 "TS3 Chinese Translator"
+echo 4. 测试: /translate status
 echo.
-echo 使用命令测试：
-echo Test with command:
-echo   /translate test Hello world
-echo.
+
+:end
 pause
-

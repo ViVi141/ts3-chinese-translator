@@ -17,13 +17,12 @@ ts3-chinese-translator/
 │   ├── plugin.c         # 主插件代码
 │   ├── plugin.h         # 插件头文件
 │   └── icons/           # 图标资源（可选）
-├── scripts/             # 构建和打包脚本
+├── scripts/             # 构建和安装脚本
 │   ├── build_msys2.sh   # MSYS2 编译脚本
-│   ├── create_package.bat/sh  # 创建安装包
+│   ├── install.bat / install.ps1 # Windows 安装脚本
 │   └── package.ini      # 插件描述文件
 ├── dist/                # 编译输出目录（自动生成）
 │   ├── ts3_translator_plugin.dll
-│   └── ts3_translator_plugin.ts3_plugin
 ├── Makefile             # Make 构建文件
 ├── README.md            # 本文件
 ├── README_TRANSLATOR.md # 插件使用说明
@@ -48,14 +47,13 @@ make
 
 ### 2. 安装插件
 
-**创建安装包：**
+推荐：使用安装脚本（自动复制到 TS3 插件目录）
 ```cmd
-scripts\create_package.bat
+scripts\install.bat
 ```
-然后双击 `dist/ts3_translator_plugin.ts3_plugin` 文件安装。
 
-或手动将 `dist/ts3_translator_plugin.dll` 复制到 TeamSpeak 3 插件目录。
-
+或手动复制 DLL：
+将 `dist/ts3_translator_plugin.dll` 复制到 `%APPDATA%\TS3Client\plugins\`
 
 ### 3. 使用插件
 
@@ -82,15 +80,6 @@ scripts/build_msys2.sh
 
 # 或使用 Make
 make
-```
-
-### 打包
-```bash
-# Windows
-scripts\create_package.bat
-
-# Linux/MSYS2
-scripts/create_package.sh
 ```
 
 ### 清理
