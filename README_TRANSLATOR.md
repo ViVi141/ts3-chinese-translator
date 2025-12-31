@@ -4,6 +4,9 @@ TeamSpeak 3 客户端插件，自动将接收到的文本消息翻译为中文�
 
 TS3 Chinese Translator Plugin - Automatically translates received text messages to Chinese.
 
+**GitHub:** https://github.com/ViVi141/ts3-chinese-translator  
+**作者:** ViVi141 (747384120@qq.com)
+
 ## 功能特性 / Features
 
 - ✅ 自动翻译文本消息为中文
@@ -185,4 +188,10 @@ Based on TeamSpeak 3 Client Plugin SDK, following the same license terms.
 欢迎提交问题和改进建议！
 
 Issues and pull requests are welcome!
+
+## 项目信息 / Project Info
+
+- **GitHub 仓库:** https://github.com/ViVi141/ts3-chinese-translator
+- **作者:** ViVi141
+- **邮箱:** 747384120@qq.com
 

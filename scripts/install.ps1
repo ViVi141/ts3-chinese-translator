@@ -1,9 +1,13 @@
 # TS3 翻译插件安装脚本 (PowerShell)
 # TS3 Translator Plugin Installer (PowerShell)
+# GitHub: https://github.com/ViVi141/ts3-chinese-translator
+# Author: ViVi141 (747384120@qq.com)
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "TS3 中文翻译插件安装程序" -ForegroundColor Cyan
 Write-Host "TS3 Chinese Translator Plugin Installer" -ForegroundColor Cyan
+Write-Host "GitHub: https://github.com/ViVi141/ts3-chinese-translator" -ForegroundColor Cyan
+Write-Host "Author: ViVi141" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 

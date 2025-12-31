@@ -2,6 +2,9 @@
 
 这是一个基于 TeamSpeak 3 Client Plugin SDK 开发的翻译插件项目。
 
+**GitHub:** https://github.com/ViVi141/ts3-chinese-translator  
+**作者:** ViVi141 (747384120@qq.com)
+
 ## 项目结构
 
 ```
@@ -95,6 +98,12 @@ scripts/create_package.sh
 make clean
 # 或手动删除 dist/ 目录
 ```
+
+## 项目信息
+
+- **GitHub 仓库:** https://github.com/ViVi141/ts3-chinese-translator
+- **作者:** ViVi141
+- **邮箱:** 747384120@qq.com
 
 ## 基于
 

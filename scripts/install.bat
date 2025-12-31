@@ -1,11 +1,15 @@
 @echo off
 REM TS3 翻译插件安装脚本
 REM TS3 Translator Plugin Installer
+REM GitHub: https://github.com/ViVi141/ts3-chinese-translator
+REM Author: ViVi141 (747384120@qq.com)
 chcp 65001 >nul 2>&1
 
 echo ========================================
 echo TS3 中文翻译插件安装程序
 echo TS3 Chinese Translator Plugin Installer
+echo GitHub: https://github.com/ViVi141/ts3-chinese-translator
+echo Author: ViVi141
 echo ========================================
 echo.
 

@@ -1,9 +1,13 @@
 #!/bin/bash
 # Build script for TS3 Translator Plugin using MSYS2
 # Run this script in MSYS2 MinGW64 terminal
+# GitHub: https://github.com/ViVi141/ts3-chinese-translator
+# Author: ViVi141 (747384120@qq.com)
 
 echo "========================================"
 echo "TS3 Translator Plugin Builder (MSYS2)"
+echo "GitHub: https://github.com/ViVi141/ts3-chinese-translator"
+echo "Author: ViVi141"
 echo "========================================"
 echo ""
 

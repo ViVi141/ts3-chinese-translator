@@ -1,11 +1,15 @@
 @echo off
 REM 创建 TeamSpeak 3 插件安装包 (.ts3_plugin)
 REM Create TeamSpeak 3 Plugin Package (.ts3_plugin)
+REM GitHub: https://github.com/ViVi141/ts3-chinese-translator
+REM Author: ViVi141 (747384120@qq.com)
 chcp 65001 >nul 2>&1
 
 echo ========================================
 echo 创建 TS3 插件安装包
 echo Create TS3 Plugin Package
+echo GitHub: https://github.com/ViVi141/ts3-chinese-translator
+echo Author: ViVi141
 echo ========================================
 echo.
 

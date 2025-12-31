@@ -1,6 +1,10 @@
 /*
- * TeamSpeak 3 demo plugin
+ * TeamSpeak 3 Chinese Translator Plugin
  *
+ * GitHub: https://github.com/ViVi141/ts3-chinese-translator
+ * Author: ViVi141 (747384120@qq.com)
+ *
+ * Based on TeamSpeak 3 Client Plugin SDK
  * Copyright (c) TeamSpeak Systems GmbH
  */
 

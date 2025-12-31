@@ -1,6 +1,10 @@
 /*
- * TeamSpeak 3 demo plugin
+ * TeamSpeak 3 Chinese Translator Plugin
  *
+ * GitHub: https://github.com/ViVi141/ts3-chinese-translator
+ * Author: ViVi141 (747384120@qq.com)
+ *
+ * Based on TeamSpeak 3 Client Plugin SDK
  * Copyright (c) TeamSpeak Systems GmbH
  */
 
@@ -349,14 +353,14 @@ int ts3plugin_apiVersion()
 const char* ts3plugin_author()
 {
     /* If you want to use wchar_t, see ts3plugin_name() on how to use */
-    return "TS3 Chinese Translator";
+    return "ViVi141";
 }
 
 /* Plugin description */
 const char* ts3plugin_description()
 {
     /* If you want to use wchar_t, see ts3plugin_name() on how to use */
-    return "自动翻译 TeamSpeak 3 中的文本消息为中文 / Auto translate TS3 text messages to Chinese";
+    return "自动翻译 TeamSpeak 3 中的文本消息为中文 / Auto translate TS3 text messages to Chinese | https://github.com/ViVi141/ts3-chinese-translator";
 }
 
 /* Set TeamSpeak 3 callback functions */

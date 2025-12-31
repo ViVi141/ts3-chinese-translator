@@ -1,6 +1,8 @@
 #
 # Makefile to build TeamSpeak 3 Client Translator Plugin
 # Works with MSYS2 MinGW64 and Linux
+# GitHub: https://github.com/ViVi141/ts3-chinese-translator
+# Author: ViVi141 (747384120@qq.com)
 #
 
 # Detect OS
