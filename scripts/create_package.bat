@@ -5,6 +5,10 @@ REM GitHub: https://github.com/ViVi141/ts3-chinese-translator
 REM Author: ViVi141 (747384120@qq.com)
 chcp 65001 >nul 2>&1
 
+REM Change to script directory, then to project root
+cd /d "%~dp0"
+cd /d ".."
+
 echo ========================================
 echo 创建 TS3 插件安装包
 echo Create TS3 Plugin Package
@@ -27,7 +31,7 @@ if not exist "dist\ts3_translator_plugin.dll" (
 )
 
 REM Check if package.ini exists
-if not exist "package.ini" (
+if not exist "scripts\package.ini" (
     echo [错误] 未找到 package.ini 文件
     echo [Error] package.ini file not found
     pause
@@ -68,6 +72,11 @@ REM Create ZIP file (using PowerShell)
 echo [信息] 正在创建 ZIP 压缩包...
 echo [Info] Creating ZIP archive...
 
+REM Ensure dist directory exists
+if not exist "dist" (
+    mkdir "dist"
+)
+
 powershell -Command "Compress-Archive -Path '%TEMP_DIR%\*' -DestinationPath 'dist\ts3_translator_plugin.zip' -Force" >nul 2>&1
 if errorlevel 1 (
     echo [错误] 创建 ZIP 文件失败
@@ -86,7 +95,6 @@ if exist "dist\ts3_translator_plugin.ts3_plugin" (
 )
 
 ren "dist\ts3_translator_plugin.zip" "ts3_translator_plugin.ts3_plugin" >nul 2>&1
-move "dist\ts3_translator_plugin.ts3_plugin" "dist\" >nul 2>&1
 if errorlevel 1 (
     echo [错误] 重命名文件失败
     echo [Error] Failed to rename file

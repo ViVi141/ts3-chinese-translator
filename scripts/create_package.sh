@@ -4,6 +4,10 @@
 # GitHub: https://github.com/ViVi141/ts3-chinese-translator
 # Author: ViVi141 (747384120@qq.com)
 
+# Change to script directory, then to project root
+cd "$(dirname "$0")"
+cd ..
+
 echo "========================================"
 echo "创建 TS3 插件安装包"
 echo "Create TS3 Plugin Package"
