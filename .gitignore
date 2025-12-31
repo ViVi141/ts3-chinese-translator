@@ -1,0 +1,28 @@
+# 编译产物
+*.dll
+*.so
+*.dylib
+*.o
+*.obj
+*.exe
+
+# 安装脚本生成的备份文件
+*.backup.*
+
+# 插件安装包
+*.ts3_plugin
+ts3_translator_plugin_temp/
+
+# 临时文件
+*.tmp
+*.bak
+*~
+
+# IDE 文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志文件
+*.log
