@@ -94,8 +94,6 @@ make clean
 - **作者:** ViVi141
 - **邮箱:** 747384120@qq.com
 
-## 基于
+## 许可证
+ AGPL-3.0 license
 
-本项目基于 TeamSpeak 3 Client Plugin SDK，遵循相同的许可证条款。
-
-Copyright &copy; TeamSpeak Systems GmbH. All rights reserved.
